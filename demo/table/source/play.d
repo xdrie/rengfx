@@ -26,13 +26,16 @@ class PlayScene : Scene3D {
         // set the camera position
         cam.entity.position = Vector3(10, 10, 10);
 
-        auto fox = create_entity("fox", Vector3(0, 0, 0));
+        auto fox = create_entity("fox", Vector3(0, 1, 0));
         auto fox_asset = Core.content.load_model("models/fox.obj");
         auto fox_model = fox.add_component(new Model3D(fox_asset));
 
         // add a camera to look at the fox
-        // cam.entity.add_component(new CameraOrbit(fox, 0.2));
-        cam.entity.add_component(new CameraFreeLook(fox));
+        cam.entity.add_component(new CameraOrbit(fox, C_PI_4 / 2));
+
+        auto stage = create_entity("stage", Vector3(0,0,0));
+        auto stage_asset = Core.content.load_model("models/stage/stage_1.obj");
+        auto stage_model = stage.add_component(new Model3D(stage_asset));
 
         // draw a grid at the origin
         auto grid = create_entity("grid");
